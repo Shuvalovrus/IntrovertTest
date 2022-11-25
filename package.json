@@ -1,0 +1,15 @@
+{
+  "name": "crmtesttask",
+  "version": "1.0.0",
+  "description": "Тестовое задания в компанию \"Интроверт\"",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "start": "node script.js"
+  },
+  "author": "Shuvalov Konstantin",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.3.0"
+  }
+}

@@ -1,13 +1,20 @@
-import fetch from 'node-fetch';
+import * as dotenv from 'dotenv';
+import { getAccessTokens, createTaskQuery, getContactsQuery } from './utils.js';
+dotenv.config();
 
-const limit = 25;
-let page = 1;
-let baseUrl = 'https://shuvalov2021.amocrm.ru/';
-let getContactsListQueryUrl = '/api/v4/contacts';
+!process.env.ACCESS_TOKEN ? process.env.ACCESS_TOKEN = await getAccessTokens() : process.env.ACCESS_TOKEN;
 
-async function getContacts() {
-  let promise = await fetch(baseUrl + getContactsListQueryUrl).then(data => data.json());
-  console.log(promise);
+async function createTasks() {
+  let page = 1;
+  let limit = 25;
+  let contacts = await getContactsQuery(limit,page);
+  while (contacts) {
+    contacts.forEach(item => !item?._embedded?.leads.length ? createTaskQuery(item.id) : '')
+    page++;
+    contacts = await getContactsQuery(limit,page);
+  }
 }
 
-getContacts();
+await createTasks();
+
+

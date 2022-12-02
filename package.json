@@ -5,11 +5,12 @@
   "main": "script.js",
   "type": "module",
   "scripts": {
-    "start": "node script.js"
+    "start": "node --trace-deprecation  script.js"
   },
   "author": "Shuvalov Konstantin",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "node-fetch": "^3.3.0"
   }
 }

@@ -9,7 +9,7 @@ async function createTasks() {
   let limit = 25;
   let contacts = await getContactsQuery(limit,page);
   while (contacts) {
-    contacts.forEach(item => !item?._embedded?.leads.length ? createTaskQuery(item.id) : '')
+    contacts.forEach(item => !item?._embedded?.leads.length && createTaskQuery(item.id));
     page++;
     contacts = await getContactsQuery(limit,page);
   }

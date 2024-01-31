@@ -7,11 +7,11 @@ dotenv.config();
 async function createTasks() {
   let page = 1;
   let limit = 25;
-  let contacts = await getContactsQuery(limit,page);
+  let contacts = await getContactsQuery(limit, page);
   while (contacts) {
     contacts.forEach(item => !item?._embedded?.leads.length && createTaskQuery(item.id));
     page++;
-    contacts = await getContactsQuery(limit,page);
+    contacts = await getContactsQuery(limit, page);
   }
 }
 
